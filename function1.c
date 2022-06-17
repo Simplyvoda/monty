@@ -33,7 +33,7 @@ void _push(stack_t **stack, unsigned int line_number)
 	char *str;
 	int value;
 	str = strtok(NULL, " \n\t\r");
-	if (str == NULL || check_isdigit(str))
+	if (str == NULL || _isdigit(str))
 	{
 		fprintf(stderr, "L%u: usage: push integer\n", line);
 		exit(EXIT_FAILURE);
