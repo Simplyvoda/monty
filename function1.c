@@ -12,7 +12,7 @@ stack_t *new_node(int n)
 	new = malloc(sizeof(stack_t));
 	if (new == NULL)
 	{
-		dprintf(STDERR_FILENO, "Error: malloc failed\n");
+		fprintf(stderr, "Error: malloc failed\n");
 		exit(EXIT_FAILURE);
 	}
 	new->n = n;
@@ -32,15 +32,15 @@ void _push(stack_t **stack, unsigned int line_number)
 {
 	char *str;
 	int value;
+	stack_t *new = NULL;
 	str = strtok(NULL, " \n\t\r");
 	if (str == NULL || _isdigit(str))
 	{
-		fprintf(stderr, "L%u: usage: push integer\n", line);
+		fprintf(stderr, "L%u: usage: push integer\n", line_number);
 		exit(EXIT_FAILURE);
 	}
 
 	value = atoi(str);
-	stack_t *new = NULL;
 	(void)line_number;
 
 	new = new_node(value);
