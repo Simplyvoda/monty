@@ -57,7 +57,7 @@ void _mul(stack_t **stack, unsigned int line_number)
  */
 void _mod(stack_t **stack, unsigned int line_number)
 {
-	stack_t *curerent = NULL;
+	stack_t *curr = NULL;
 	int div = 0;
 
 	if (!*stack || !(*stack)->next)
@@ -72,9 +72,9 @@ void _mod(stack_t **stack, unsigned int line_number)
 		cleanStack(stack);
 		exit(EXIT_FAILURE);
 	}
-	curerent = *stack;
-	div = curerent->next->n % curerent->n;
-	curerent->next->n = div;
+	curr = *stack;
+	div = curr->next->n % curr->n;
+	curr->next->n = div;
 	_pop(stack, line_number);
 }
 /**
