@@ -21,9 +21,9 @@ void _div(stack_t **stack, unsigned int line_number)
 		cleanStack(stack);
 		exit(EXIT_FAILURE);
 	}
-	curerent = *stack;
-	div = curerent->next->n / curerent->n;
-	curerent->next->n = div;
+	current = *stack;
+	div = current->next->n / current->n;
+	current->next->n = div;
 	_pop(stack, line_number);
 
 }
