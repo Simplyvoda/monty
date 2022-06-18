@@ -29,7 +29,7 @@ int _isdigit(char *c)
  */
 void cleanStack(stack_t **stack)
 {
-	FILE *file;
+	FILE *file ;
 	char *line;
 	stack_t *current = *stack;
 
