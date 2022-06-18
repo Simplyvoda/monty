@@ -10,22 +10,22 @@
 int main(int argc, char *argv[])
 {
 	if (argc == 2)
-		readfile(argv[1]);
+		read_file(argv[1]);
 	else
 	{
-		dprintf(STDERR_FILENO, "USAGE: monty file\n");
+		fprintf(stderr, "USAGE: monty file\n");
 		exit(EXIT_FAILURE);
 	}
-	return(0)
+	return(0);
 }
 
 /**
- * readfile - read monty files
+ * read_file - read monty files
  * @argv: argument name
  * Return: void
  */
 
-void readfile(char *argv)
+void read_file(char *argv)
 {
 	int count = 0;
 	size_t bufsize = 0;
@@ -43,7 +43,7 @@ void readfile(char *argv)
 			args = strtok(line, " \n\t\r");
 			while (args != NULL && *args == '#')
 			{
-				args = strtok(NULL, " \n\t\r")
+				args = strtok(NULL, " \n\t\r");
 			}
 			ops(&stack, args, count);
 		}
