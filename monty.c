@@ -48,12 +48,12 @@ void readfile(char *argv)
 			ops(&stack, args, count);
 		}
 		free(line);
-		free_dlistint(stack);
+		free_stack(stack);
 		fclose(file);
 	}
 	else
 	{
-		dprintf(STDERR_FILENO, "Error: Can't open file %s\n", argv[1]);
+		fprintf(stderr, "Error: Can't open file %s\n", argv[1]);
 		exit(EXIT_FAILURE);
 	}
 }
