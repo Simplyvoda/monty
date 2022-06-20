@@ -36,24 +36,6 @@ void cleanStack(stack_t **stack)
 		*stack = (*stack)->next;
 		free(current);
 	}
-	fclose(file);
-	free(line);
-}
-
-/**
- * free_stack - Free a list.
- * @stack: Head node.
- * Return: Nothing.
- */
-void free_stack(stack_t *stack)
-{
-	stack_t *current = NULL;
-
-	current = stack;
-
-	if (current != NULL)
-	{
-		free_stack(current->next);
-		free(current);
-	}
+	fclose(global.fd);
+	free(global.line);
 }

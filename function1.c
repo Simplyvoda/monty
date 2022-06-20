@@ -1,49 +1,39 @@
 #include "monty.h"
 
+int value;
 /**
- * new_node - this function creates a new node
- * @n: integer
+ * new_Node - create new node
+ * @n: is a value
  * Return: new node
  */
-
-stack_t *new_node(int n)
+stack_t *new_Node(int n)
 {
-	stack_t *new;
+	stack_t *new = NULL;
+
 	new = malloc(sizeof(stack_t));
 	if (new == NULL)
 	{
-		dprintf(STDERR_FILENO, "Error: malloc failed\n");
+		fprintf(stderr, "Error: malloc failed\n");
 		exit(EXIT_FAILURE);
 	}
 	new->n = n;
 	new->next = NULL;
 	new->prev = NULL;
 
-	return(new);
+	return (new);
 }
 
 /**
- * _push - pushes an element to the stack
- * @stack: stack or queue
- * @line_number: the file line number
- * Return: void
+ * _push - push item
+ * @stack: is a parameter
+ * @line_number: is value
  */
 void _push(stack_t **stack, unsigned int line_number)
 {
-	char *str;
-	int value;
-	str = strtok(NULL, " \n\t\r");
-	if (str == NULL || check_isdigit(str))
-	{
-		fprintf(stderr, "L%u: usage: push integer\n", line);
-		exit(EXIT_FAILURE);
-	}
-
-	value = atoi(str);
 	stack_t *new = NULL;
 	(void)line_number;
 
-	new = new_node(value);
+	new = new_Node(value);
 
 	new->next = *stack;
 	if (*stack != NULL)
@@ -52,12 +42,12 @@ void _push(stack_t **stack, unsigned int line_number)
 }
 
 /**
- * _pall - prints all elements in the stack
- * @stack: stack or queue
- * @n: integer
- * Return: void
+ * _pall - print elements stack
+ * @stack: is a parameter
+ * @n: is value
+ * Return: nothing
  */
-void _pall(stack_t **stack, unsigned int n) /*its assumed stack is head node*/
+void _pall(stack_t **stack, unsigned int n)
 {
 	stack_t *current = NULL;
 	(void)n;
@@ -66,40 +56,42 @@ void _pall(stack_t **stack, unsigned int n) /*its assumed stack is head node*/
 
 	while (current != NULL)
 	{
-		printf("%d\n", current->n);
+		fprintf(stdout, "%d\n", current->n);
 		current = current->next;
 	}
 }
 
 /**
- * _pint - prints the value at the top of the stack
- * @stack: stack
- * @line_number: Number of line
+ * free_dlistint - Free a list.
+ * @stack: Head node.
+ * Return: Nothing.
+ */
+void free_dlistint(stack_t *stack)
+{
+	stack_t *current = NULL;
+
+	current = stack;
+
+	if (current != NULL)
+	{
+		free_dlistint(current->next);
+		free(current);
+	}
+}
+
+/**
+ * _pint - prints the value at the top of the stack.
+ * @stack: Stack list
+ * @line_number: Number of the line
  */
 void _pint(stack_t **stack, unsigned int line_number)
 {
 	if (!*stack || !stack)
 	{
-		printf("L%u: can't pint, stack empty\n", line_number);
+		fprintf(stderr, "L%d: can't pint, stack empty\n", line_number);
 		cleanStack(stack);
 		exit(EXIT_FAILURE);
 	}
-	else 
-		printf("%d\n", (*stack)->n);
-}
-
-/**
- * free_stack - frees the stack
- * @head: head node
- * Return: void
- */
-void free_stack(stack_t *head)
-{
-	stack_t *current = NULL;
-	current = head;
-	if (current != NULL)
-	{
-		free_stack(current->next);
-		free(current);
-	}
+	else
+		fprintf(stdout, "%d\n", (*stack)->n);
 }

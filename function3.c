@@ -6,7 +6,7 @@
  */
 void _div(stack_t **stack, unsigned int line_number)
 {
-	stack_t *current = NULL;
+	stack_t *curerent = NULL;
 	int div = 0;
 
 	if (!*stack || !(*stack)->next)

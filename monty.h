@@ -1,5 +1,6 @@
-#ifndef _MONTY_H
-#define _MONTY_H
+#ifndef MONTY_H
+#define MONTY_H
+
 #include <stdio.h>
 #include <stdlib.h>
 #include <sys/types.h>
@@ -16,13 +17,13 @@
  * @next: points to the next element of the stack (or queue)
  *
  * Description: doubly linked list node structure
- * for stack, queues, LIFO, FIFO
+ * for stack, queues, LIFO, FIFO Holberton project
  */
 typedef struct stack_s
 {
-        int n;
-        struct stack_s *prev;
-        struct stack_s *next;
+	int n;
+	struct stack_s *prev;
+	struct stack_s *next;
 } stack_t;
 
 /**
@@ -31,17 +32,33 @@ typedef struct stack_s
  * @f: function to handle the opcode
  *
  * Description: opcode and its function
- * for stack, queues, LIFO, FIFO
+ * for stack, queues, LIFO, FIFO Holberton project
  */
 typedef struct instruction_s
 {
-        char *opcode;
-        void (*f)(stack_t **stack, unsigned int line_number);
+	char *opcode;
+	void (*f)(stack_t **stack, unsigned int line_number);
 } instruction_t;
 
-void readline(char *argv);
+/**
+ * struct glob_s - global and its funcs
+ * @fd: File descriptor
+ * @line: Line to getline
+ *
+ * Description: To handle the file and getline
+ */
+typedef struct glob_s
+{
+	FILE *fd;
+	char *line;
+} glob_t;
 
-int ops(stack_t **stack, char *arg, int count);
+extern glob_t global;
+extern int value;
+
+void handle_command(char *argv);
+
+int get_opc(stack_t **stack, char *arg, char *item, int count);
 
 void _push(stack_t **stack, unsigned int line_number);
 void _pall(stack_t **stack, unsigned int line_number);
@@ -56,11 +73,15 @@ void _mul(stack_t **stack, unsigned int line_number);
 void _mod(stack_t **stack, unsigned int line_number);
 void _pchar(stack_t **stack, unsigned int line_number);
 void _pstr(stack_t **stack, unsigned int line_number);
-void free_stack(stack_t *stack);
+void free_dlistint(stack_t *stack);
 void cleanStack(stack_t **stack);
 
 /*Help*/
 int _isdigit(char *c);
 stack_t *new_Node(int n);
 
-#endif /*_MONTY_H*/
+/* handle_errors */
+void push_error(FILE *fd, char *line, stack_t *stack, int count);
+void ins_error(FILE *fd, char *line, stack_t *stack, char *count, int item);
+
+#endif
