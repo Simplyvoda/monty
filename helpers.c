@@ -29,6 +29,8 @@ int _isdigit(char *c)
  */
 void cleanStack(stack_t **stack)
 {
+	FILE *file ;
+	char *line;
 	stack_t *current = *stack;
 
 	for (; current; current = *stack)

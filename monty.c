@@ -18,6 +18,7 @@ int main(int argc, char *argv[])
 	}
 	return (0);
 }
+
 /**
  * handle_command - Read file
  * @argv: Arguments
@@ -41,7 +42,6 @@ void handle_command(char *argv)
 			{
 				free(arguments);
 				continue;
-			}
 			else if (*arguments == '#')
 				continue;
 			item = strtok(NULL, " \n\t\r");
@@ -58,8 +58,11 @@ void handle_command(char *argv)
 	else
 	{
 		fprintf(stderr, "Error: Can't open file %s\n", argv);
-		exit(EXIT_FAILURE);
+		free(line);
+		free_stack(stack);
+		fclose(file);
 	}
+	
 }
 /**
  * get_opc - function to handle the opcode

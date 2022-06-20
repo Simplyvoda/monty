@@ -61,7 +61,7 @@ void handle_command(char *argv);
 int get_opc(stack_t **stack, char *arg, char *item, int count);
 
 void _push(stack_t **stack, unsigned int line_number);
-void _pall(stack_t **stack, unsigned int line_number);
+void _pall(stack_t **stack, unsigned int n);
 void _pint(stack_t **stack, unsigned int line_number);
 void _swap(stack_t **stack, unsigned int line_number);
 void _pop(stack_t **stack, unsigned int line_number);

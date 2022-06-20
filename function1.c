@@ -31,6 +31,7 @@ stack_t *new_Node(int n)
 void _push(stack_t **stack, unsigned int line_number)
 {
 	stack_t *new = NULL;
+
 	(void)line_number;
 
 	new = new_Node(value);
